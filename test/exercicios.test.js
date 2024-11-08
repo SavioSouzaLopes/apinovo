@@ -1,4 +1,4 @@
-const { somar, calculaSalario } = require('../service/exercicios')
+const { somar, calculaSalario } = require('../services/exercicios')
 const { describe, it, expect } = require('@jest/globals')
 
 describe('Testes da função somar: ', () => {
