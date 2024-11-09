@@ -1,10 +1,14 @@
-const express = require('express');
-const ControllerExercicio = require('../controllers/exercicio')
+const express = require('express')
+const controllerPessoa = require('../controllers/pessoa')
 
+// Inicializando as rotas do express
 const router = express.Router()
 
-router.post("/exercicio1/", ControllerExercicio.Somar)
-router.post("/exercicio2/", ControllerExercicio.CalculaSalario)
-router.post("/exercicio15/", ControllerExercicio.Triangulo)
+// Criando as rotas
+router.get('/', controllerPessoa.GetPessoas)
+router.post('/', controllerPessoa.CreatePessoa)
+router.put('/:id', controllerPessoa.UpdatePessoa)
+router.delete('/:id', controllerPessoa.DeletePessoa)
 
-module.exports = router;
+// Exportar as rotas
+module.exports = router

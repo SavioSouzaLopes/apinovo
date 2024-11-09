@@ -1,12 +1,28 @@
-const express = require('express');
-const router = require('./src/routes/exercicio');
+// Não é mais tudo !!!!
+const express = require('express')
+const routers = require('./src/routes/pessoa')
 
-const app = express();
+// Instanciar um express
+const app = express()
 
-app.use(express.json());
+// Middleware json - aceita json no body
+app.use(express.json())
 
-app.use(router)
+// Adicionar as rotas ao express
+app.use(routers)
 
+// Inicializar o servidor
 app.listen(3000, () => {
-    console.log('servidor está rodando na porta 3000')
+    console.info("Servidor rodando na porta 3000")
 })
+
+// OOOOOOUUUUUU
+
+// // Variavel com a porta
+// const PORT = 3000
+
+// // Inicializar o servidor
+// app.listen(PORT, () => {
+                    // usando o template string
+//     console.info(`Servidor rodando na porta ${PORT}`)
+// })

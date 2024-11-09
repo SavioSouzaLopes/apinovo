@@ -1,38 +1,43 @@
-const ServiceExercicio = require('../services/exercicio')
+const ServicePessoa = require('../services/pessoa')
 
-class ControllerExercicio {
-    Somar(req, res) {
+// Criando a classe controller da Pessoa
+class ControllerPessoa {
+    GetPessoas(req, res) {
         try {
-            const resultado = ServiceExercicio.Somar(req.body.num1, req.body.num2);
-            res.status(201).json({ resultado })
-        } catch (e) {
-            res.status(500).json({ msg: e.message })
+            const pessoas = ServicePessoa.GetPessoas()
+            res.send({ msg: pessoas })
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
         }
     }
-
-    CalculaSalario(req, res) {
+    CreatePessoa(req,res){
         try {
-            const { salarioHora, horasTrabalhadas } = req.body
-            // const salarioHora = req.body.salarioHora
-            // const horasTrabalhadas = req.body.horasTrabalhadas
-            const resultado = ServiceExercicio
-                .CalculaSalario(salarioHora, horasTrabalhadas)
-            
-            res.status(201).json({ msg: resultado })
-        } catch (e) {
-            res.status(422).json({ msg: e.message })  
+            const name = req.body.name
+            const pessoa = ServicePessoa.CreatePessoa(name)
+            res.send({ msg: pessoa })
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
         }
     }
-
-    Triangulo(req, res) {
+    UpdatePessoa(req,res){
         try {
-            const { a, b, c } = req.body
-            const resultado = ServiceExercicio.VerificaTriangulos(a,b,c)
-            res.status(201).json({ resultado })
-        } catch (e) {
-            res.status(500).json({ msg: e.message })
+            const id = req.params.id
+            const name = req.body.name
+            const pessoa = ServicePessoa.UpdatePessoa(id, name)
+            res.send({ msg: pessoa })
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
+        }
+    }
+    DeletePessoa(req,res){
+        try {
+            const id = req.params.id
+            const pessoa = ServicePessoa.DeletePessoa(id)
+            res.send({ msg: pessoa })
+        } catch (error) {
+            res.status(500).send({ msg: error.message })
         }
     }
 }
 
-module.exports = new ControllerExercicio()
+module.exports = new ControllerPessoa()
